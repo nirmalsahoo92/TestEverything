@@ -1,6 +1,7 @@
 package AllLogic;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
@@ -24,28 +25,37 @@ public class AllLogic extends UIOperator
 	}
 	public void openMenu(String menu) throws InterruptedException
 	{
+		String[] menuItem = menu.split("=>");
 		String xpath = null;
-		String[] menuList = menu.split("=>");
-		for (int i = 0; i < menuList.length; i++) 
-		{	
-			switch (i) {
+		for (int i = 0; i < menuItem.length; i++) 
+		{
+			switch (i) 
+			{
 			case 0:
-				xpath = "//li[contains(@id,'_"+menuList[0].toLowerCase()+"_') and contains(@class,'level1')]";
+				xpath = "//*[contains(@id,'"+menuItem[0]+"') and contains(@class,'level1')]";
 				clickElement(ObjectRepository.BaseMenu.findElement(By.xpath(xpath)));
 				break;
 			case 1:
-				xpath = xpath.concat("//li[contains(@id,'"+menuList[1]+"') and contains(@class,'level2')]");
+				xpath = "//*[contains(@id,'"+menuItem[1].replaceAll("\\s+","")+"') and contains(@class,'level2')]";
 				clickElement(ObjectRepository.BaseMenu.findElement(By.xpath(xpath)));
 				break;
 			case 2:
-				xpath = xpath.concat("//*[text()='"+menuList[2]+"']");
+				xpath = "//*[text()='"+menuItem[2]+"']";
 				clickElement(ObjectRepository.BaseMenu.findElement(By.xpath(xpath)));
-				break;
-			default:
 				break;
 			}
 		}
-		waitForPageTitleToBeLoaded();
+	}
+	public void createUser(List<String> data) 
+	{
+		setData(ObjectRepository.EmployeeName_AddUser, data.get(0));
+		setData(ObjectRepository.UserName_AddUser, data.get(1));
+		clickElement(ObjectRepository.AdminRole_AddUser);
+		waitForElementToDisplay(ObjectRepository.AdminRoleMain_AddUser);
+		clickElement(ObjectRepository.AdminRoleMain_AddUser);
+		setData(ObjectRepository.Password_AddUser, data.get(2));
+		setData(ObjectRepository.ConfirmPassword_AddUser, data.get(3));
+		clickElement(ObjectRepository.Save);
 	}
 
 }

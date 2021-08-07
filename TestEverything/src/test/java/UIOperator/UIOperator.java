@@ -10,13 +10,30 @@ import ObjectRepository.ObjectRepository;
 
 public class UIOperator extends BaseTest
 {
+	public static WebElement getElement(WebElement element) 
+	{
+		WebElement webelement = null;
+		try{
+			webelement = element;
+			return webelement;
+		
+		} catch (Exception e) 
+		{
+			WebDriverWait wait = new WebDriverWait(driver, 15);
+			wait.until(ExpectedConditions.visibilityOf(element));
+		}
+		return webelement;
+		
+	}
 	
 	public static void setData(WebElement element,String value) 
 	{
+		getElement(element);
 		element.sendKeys(value);
 	}
 	public static void clickElement(WebElement element) 
 	{
+		getElement(element);
 		element.click();
 	}
 	public static void waitForElementToDisplay(WebElement element)
@@ -31,6 +48,7 @@ public class UIOperator extends BaseTest
 	}
 	public void actionClick(WebElement element) 
 	{
+		getElement(element);
 		Actions action = new Actions(driver);
 		action.moveToElement(element).click().build().perform();
 	}
