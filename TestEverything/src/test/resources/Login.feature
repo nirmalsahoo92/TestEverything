@@ -5,4 +5,4 @@ Feature: Login Test
 		When I open menu "Admin=>User Management=>Users"
 		When I click on "Add Button" button
 		When I create user with following data
-		|Aaliyah Haq|User1|Softwaretesting|Softwaretesting|
+		|Aaliyah Haq|User4|Global Salary Admin|Softwaretesting|Softwaretesting|

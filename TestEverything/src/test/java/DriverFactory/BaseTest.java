@@ -23,7 +23,6 @@ public class BaseTest
 			excludeSwitches.add("enable-automation");
 			options.setExperimentalOption("excludeSwitches", excludeSwitches);
 			options.setAcceptInsecureCerts(true);
-			
 			driver = new ChromeDriver(options);
 			driver.manage().window().maximize();
 			return driver;	

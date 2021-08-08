@@ -23,7 +23,7 @@ public class ObjectRepository extends UIOperator
 	public static WebElement BaseMenu;
 	@FindBy(how = How.XPATH, using = "//*[@class='page-title']")
 	public static WebElement BasePageTitle;	
-	@FindBy(how = How.XPATH, using = "//*[text()='add']")
+	@FindBy(how = How.XPATH, using = "//*[@class='material-icons' and text()='add']")
 	public static WebElement AddButton;	
 	@FindBy(how = How.XPATH, using = "//div[@class='spinner-layer']")
 	public static WebElement Spinner;
@@ -38,8 +38,6 @@ public class ObjectRepository extends UIOperator
 	public static WebElement UserName_AddUser;
 	@FindBy(how = How.XPATH, using = "//button[@data-id='adminrole']")
 	public static WebElement AdminRole_AddUser;
-	@FindBy(how = How.XPATH, using = "//*[@role='option']//*[text()='main']")
-	public static WebElement AdminRoleMain_AddUser;
 	@FindBy(how = How.XPATH, using = "//*[@id='confirmpassword']")
 	public static WebElement ConfirmPassword_AddUser;
 	@FindBy(how = How.XPATH, using = "//*[@id='password']")

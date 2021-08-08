@@ -16,7 +16,7 @@ public class UIOperator extends BaseTest
 		try{
 			webelement = element;
 			return webelement;
-		
+
 		} catch (Exception e) 
 		{
 			WebDriverWait wait = new WebDriverWait(driver, 15);
@@ -46,11 +46,12 @@ public class UIOperator extends BaseTest
 		WebDriverWait wait = new WebDriverWait(driver, 15);
 		wait.until(ExpectedConditions.visibilityOf(ObjectRepository.BasePageTitle));
 	}
-	public void actionClick(WebElement element) 
+	public static void actionClick(WebElement element) 
 	{
 		getElement(element);
 		Actions action = new Actions(driver);
 		action.moveToElement(element).click().build().perform();
 	}
+	
 	
 }

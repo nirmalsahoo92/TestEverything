@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 import DriverFactory.BaseTest;
@@ -46,16 +47,24 @@ public class AllLogic extends UIOperator
 			}
 		}
 	}
-	public void createUser(List<String> data) 
+	public void createUser(List<String> data) throws InterruptedException 
 	{
+		Thread.sleep(3000);
 		setData(ObjectRepository.EmployeeName_AddUser, data.get(0));
 		setData(ObjectRepository.UserName_AddUser, data.get(1));
-		clickElement(ObjectRepository.AdminRole_AddUser);
-		waitForElementToDisplay(ObjectRepository.AdminRoleMain_AddUser);
-		clickElement(ObjectRepository.AdminRoleMain_AddUser);
-		setData(ObjectRepository.Password_AddUser, data.get(2));
-		setData(ObjectRepository.ConfirmPassword_AddUser, data.get(3));
+		dynamicSelectValue(ObjectRepository.AdminRole_AddUser, data.get(2));
+		setData(ObjectRepository.Password_AddUser, data.get(3));
+		setData(ObjectRepository.ConfirmPassword_AddUser, data.get(4));
 		clickElement(ObjectRepository.Save);
+	}
+	public void dynamicSelectValue(WebElement element,String value) 
+	{
+		clickElement(element);
+		String[] data= element.toString().split("->")[1].replace("]]", "]").split(": ");
+		String xpath= data[1];
+		xpath = xpath+"//..//*[@role='option']//*[text()='"+value+"']";
+		clickElement(driver.findElement(By.xpath(xpath)));
+		
 	}
 
 }
