@@ -3,6 +3,7 @@
   <groupId>TestEverything</groupId>
   <artifactId>TestEverything</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <!--TestEverything-->  
   <dependencies>
   		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>

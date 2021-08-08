@@ -1,6 +1,6 @@
 Feature: Login Test
 
-  Scenario: Login_Valid Data
+  Scenario: User Creation
     Given I login to portal
 		When I open menu "Admin=>User Management=>Users"
 		When I click on "Add Button" button
